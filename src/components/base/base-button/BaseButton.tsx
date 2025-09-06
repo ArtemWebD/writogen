@@ -1,15 +1,20 @@
-import { Button } from "@mui/material";
+import { Button, type ButtonProps } from "@mui/material";
+import clsx from "clsx";
 import { memo, type FC, type ReactNode } from "react";
 
-interface IProps {
+interface IProps extends ButtonProps {
   children?: ReactNode | ReactNode[];
 }
 
-const BaseButton: FC<IProps> = ({ children }) => {
+const BaseButton: FC<IProps> = ({ children, className, ...props }) => {
   return (
     <Button
       variant="contained"
-      className="!bg-main-color !text-white-color !normal-case"
+      className={clsx(
+        className,
+        "!bg-main-color !text-white-color !normal-case"
+      )}
+      {...props}
     >
       {children}
     </Button>

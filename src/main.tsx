@@ -2,21 +2,20 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/header/Header";
 import "./assets/index.css";
-import { createTheme, ThemeProvider } from "@mui/material";
-
-const theme = createTheme({
-  palette: {
-    info: {
-      main: "rgb(255,171,126);",
-      contrastText: "#212121",
-    },
-  },
-});
+import FirstScreen from "./components/first-screen/FirstScreen";
+import { motion } from "framer-motion";
+import { GLOBAL_ANIMATION_DELAY, GLOBAL_ANIMATION_DURATION } from "./const";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
+    <motion.div
+      key={"root"}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: GLOBAL_ANIMATION_DURATION, delay: GLOBAL_ANIMATION_DELAY }}
+    >
       <Header />
-    </ThemeProvider>
+      <FirstScreen />
+    </motion.div>
   </StrictMode>
 );
