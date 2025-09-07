@@ -5,7 +5,7 @@
   --color-text-color: #323232;
   --color-white-color: #ffffff;
   --color-black-color: #000000;
-  --color-gray-color: rgba(0, 0, 0, 0.5);
+  --color-gray-color: rgba(0, 0, 0, 0.1);
 }
 
 * {
