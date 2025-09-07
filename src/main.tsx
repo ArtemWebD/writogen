@@ -5,6 +5,7 @@ import "./assets/index.css";
 import FirstScreen from "./components/first-screen/FirstScreen";
 import { motion } from "framer-motion";
 import { GLOBAL_ANIMATION_DELAY, GLOBAL_ANIMATION_DURATION } from "./const";
+import ProductSection from "./components/product-section/ProductSection";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -12,10 +13,14 @@ createRoot(document.getElementById("root")!).render(
       key={"root"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: GLOBAL_ANIMATION_DURATION, delay: GLOBAL_ANIMATION_DELAY }}
+      transition={{
+        duration: GLOBAL_ANIMATION_DURATION,
+        delay: GLOBAL_ANIMATION_DELAY,
+      }}
     >
       <Header />
       <FirstScreen />
+      <ProductSection />
     </motion.div>
   </StrictMode>
 );
