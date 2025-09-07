@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, Toolbar } from "@mui/material";
+import { AppBar, Box, Container, Link, Toolbar } from "@mui/material";
 import { memo, useState } from "react";
 import LogoBox from "../logo/LogoBox";
 import PhoneButton from "../phone-button/PhoneButton";
@@ -34,7 +34,9 @@ const Header = () => {
               } transition-transform duration-500 !bg-white-color !w-full !pt-5 !pb-5 sm:static sm:!flex-row sm:!translate-y-0 sm:!translate-x-0 sm:!bg-transparent sm:!w-fit sm:!p-0`}
             >
               <PhoneButton />
-              <BaseButton>Заказать звонок</BaseButton>
+              <Link href="#contacts">
+                <BaseButton>Заказать звонок</BaseButton>
+              </Link>
             </Box>
             <BaseIconButton
               className="sm:!hidden"

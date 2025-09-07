@@ -1,10 +1,10 @@
-import { Link, Typography } from "@mui/material";
-import { memo } from "react";
+import { Link, Typography, type TypographyProps } from "@mui/material";
+import { memo, type FC } from "react";
 
-const PhoneButton = () => {
+const PhoneButton: FC<TypographyProps> = (props) => {
   return (
     <Link href="tel:+79128089519" className="!no-underline">
-      <Typography>+7 (912) 808-95-19</Typography>
+      <Typography {...props}>+7 (912) 808-95-19</Typography>
     </Link>
   );
 };

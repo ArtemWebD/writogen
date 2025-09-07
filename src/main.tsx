@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { GLOBAL_ANIMATION_DELAY, GLOBAL_ANIMATION_DURATION } from "./const";
 import ProductSection from "./components/product-section/ProductSection";
 import WorkSection from "./components/work-section/WorkSection";
+import ContactsSection from "./components/contacts-section/ContactsSection";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")!).render(
       <FirstScreen />
       <ProductSection />
       <WorkSection />
+      <ContactsSection />
     </motion.div>
   </StrictMode>
 );
