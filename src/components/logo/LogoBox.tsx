@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 interface IProps {
   animate?: boolean;
+  className?: string;
 }
 
-const LogoBox: FC<IProps> = ({ animate }) => {
+const LogoBox: FC<IProps> = ({ animate, className }) => {
   return (
     <Box display={"flex"} gap={"0.5rem"} alignItems={"center"}>
       {animate ? (
@@ -26,13 +27,13 @@ const LogoBox: FC<IProps> = ({ animate }) => {
             transition={{ duration: 1, delay: 0.5 }}
             style={{ overflow: "hidden" }}
           >
-            <LogoTitle />
+            <LogoTitle className={className} />
           </motion.span>
         </>
       ) : (
         <>
           <Logo />
-          <LogoTitle />
+          <LogoTitle className={className} />
         </>
       )}
     </Box>
