@@ -50,6 +50,7 @@ const App = () => {
         duration: GLOBAL_ANIMATION_DURATION,
         delay: GLOBAL_ANIMATION_DELAY,
       }}
+      className="relative w-screen overflow-x-hidden"
     >
       <Header onOpenModal={openModal} />
       <FirstScreen />

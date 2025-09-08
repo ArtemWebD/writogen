@@ -15,7 +15,7 @@ const FirstScreen = () => {
         <Typography
           variant="h1"
           fontWeight={"bold"}
-          className="!text-main-color !text-[3.5rem]"
+          className="!text-main-color !text-[3.2rem]"
         >
           IT-решения,
           <br /> приносящие прибыль
