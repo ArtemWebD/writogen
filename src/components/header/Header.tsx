@@ -1,5 +1,5 @@
 import { AppBar, Box, Container, Link, Toolbar } from "@mui/material";
-import { memo, useState } from "react";
+import { memo, useState, type FC } from "react";
 import LogoBox from "../logo/LogoBox";
 import PhoneButton from "../phone-button/PhoneButton";
 import BaseButton from "../base/base-button/BaseButton";
@@ -8,7 +8,11 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CloseSharpIcon from "@mui/icons-material/CloseSharp";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Header = () => {
+interface IProps {
+  onOpenModal?: () => void;
+}
+
+const Header: FC<IProps> = ({ onOpenModal }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -37,6 +41,7 @@ const Header = () => {
               <Link href="#contacts">
                 <BaseButton>Заказать звонок</BaseButton>
               </Link>
+              <BaseButton onClick={onOpenModal}>Корзина</BaseButton>
             </Box>
             <BaseIconButton
               className="sm:!hidden"

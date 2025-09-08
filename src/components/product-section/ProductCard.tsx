@@ -1,16 +1,19 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { memo, useState, type FC } from "react";
+import { memo, useCallback, useState, type FC } from "react";
 import BaseButton from "../base/base-button/BaseButton";
 import clsx from "clsx";
 import useIntersection from "../../hooks/intersection/useIntersection";
 import { motion } from "framer-motion";
+import type { IProduct } from "../../App";
 
 interface IProps {
+  id: number;
   title: string;
   description: string;
   price: number;
   imageUrl: string;
   animationDelay?: number;
+  onAddProduct?: (product: IProduct) => void;
 }
 
 const ProductCard: FC<IProps> = ({
@@ -18,7 +21,9 @@ const ProductCard: FC<IProps> = ({
   imageUrl,
   description,
   price,
+  id,
   animationDelay = 0,
+  onAddProduct,
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -26,6 +31,12 @@ const ProductCard: FC<IProps> = ({
     threshold: 0.4,
     triggerOnce: true,
   });
+
+  const addProduct = useCallback(() => {
+    if (onAddProduct) {
+      onAddProduct({ title, image: imageUrl, price, id });
+    }
+  }, [onAddProduct, title, imageUrl, price, id]);
 
   return (
     <motion.div
@@ -66,7 +77,10 @@ const ProductCard: FC<IProps> = ({
               hover ? "xl:!opacity-100" : "xl:!opacity-0"
             )}
           >
-            <BaseButton className="!pt-2 !pb-2 !pl-5 !pr-5 !text-xl">
+            <BaseButton
+              className="!pt-2 !pb-2 !pl-5 !pr-5 !text-xl"
+              onClick={addProduct}
+            >
               Заказать от{" "}
               <span className="!font-bold !text-white-color !text-xl ml-2">
                 {price} ₽
