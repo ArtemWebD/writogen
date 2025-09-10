@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import FirstScreen from "./components/first-screen/FirstScreen";
+import { motion } from "framer-motion";
+import { GLOBAL_ANIMATION_DELAY, GLOBAL_ANIMATION_DURATION } from "./const";
+import Header from "./components/header/Header";
+import ProductSection from "./components/product-section/ProductSection";
+import WorkSection from "./components/work-section/WorkSection";
+import ContactsSection from "./components/contacts-section/ContactsSection";
+import Footer from "./components/footer/Footer";
+import { useCallback, useState } from "react";
+import CartModal from "./components/cart/CartModal";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
 }
 
-export default App
+const App = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [modal, setModal] = useState(false);
+
+  const addProduct = useCallback(
+    (product: IProduct) =>
+      setProducts((prev) => [
+        ...prev.filter((value) => value.id !== product.id),
+        product,
+      ]),
+    [setProducts]
+  );
+  const deleteProduct = useCallback(
+    (id: number) =>
+      setProducts((prev) => prev.filter((value) => value.id !== id)),
+    [setProducts]
+  );
+
+  const openModal = useCallback(() => {
+    setModal(true);
+  }, [setModal]);
+  const closeModal = useCallback(() => {
+    setModal(false);
+  }, [setModal]);
+
+  return (
+    <motion.div
+      key={"root"}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: GLOBAL_ANIMATION_DURATION,
+        delay: GLOBAL_ANIMATION_DELAY,
+      }}
+      className="relative w-screen overflow-x-hidden"
+    >
+      <Header onOpenModal={openModal} />
+      <FirstScreen />
+      <ProductSection onAddProduct={addProduct} />
+      <WorkSection />
+      <ContactsSection />
+      <Footer />
+      <CartModal
+        open={modal}
+        products={products}
+        onClose={closeModal}
+        onDelete={deleteProduct}
+      />
+    </motion.div>
+  );
+};
+
+export default App;

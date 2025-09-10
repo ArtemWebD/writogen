@@ -1,0 +1,2 @@
+export const GLOBAL_ANIMATION_DURATION = 0.5;
+export const GLOBAL_ANIMATION_DELAY = 0.75;
