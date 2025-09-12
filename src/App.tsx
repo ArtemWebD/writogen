@@ -54,7 +54,7 @@ const App = () => {
     >
       <Header onOpenModal={openModal} />
       <FirstScreen />
-      <ProductSection onAddProduct={addProduct} />
+      <ProductSection onAddProduct={addProduct} onOpenCart={openModal} />
       <WorkSection />
       <ContactsSection />
       <Footer />
